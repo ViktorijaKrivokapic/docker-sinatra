@@ -8,11 +8,13 @@ services:
   - docker
 
 before_install:
-- sudo docker pull carlad/sinatra
-- sudo docker run -d -p 127.0.0.1:80:4567 carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec foreman start;"
-- sudo docker ps -a
-- sudo docker run carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec rake test"
+  - sudo systemctl start docker
+  - sudo docker info
+  - sudo docker pull carlad/sinatra
+  - sudo docker run -d -p 127.0.0.1:80:4567 carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec foreman start;"
+  - sudo docker ps -a
+  - sudo docker run carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec rake test"
 
 script:
-- bundle exec rake test 
+  - bundle exec rake test 
 
